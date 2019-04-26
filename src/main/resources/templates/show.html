@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>评价</th>
+            <th>语文</th>
+            <th>数学</th>
+            <th>英语</th>
+            <th>总分</th>
+        </tr>
+        <tr th:each="ele:${students_list}">
+            <td th:text="${ele.student_number}">
+                1
+            </td>
+
+            <td>
+                <a th:href="@{'info/' + ${ele.student_number}}" th:text="${ele.name}">
+                    李聪
+                </a>
+            </td>
+            <td th:text="${ele.sex}">
+            </td>
+            <td th:text="${ele.remark}">
+            </td>
+            <td th:text="${ele.chinese}">
+            </td>
+            <td th:text="${ele.math}">
+            </td>
+            <td th:text="${ele.english}">
+            </td>
+            <td th:text="${ele.grade}">
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <script type="text/javascript" src="/js/info.js"> </script>
+
+</head>
+<body>
+    <a href="../">返回主界面</a>
+    <table>
+        <tr>
+            <td><B >学号：</B></td>  <td id="student_number" th:text="${student.student_number}"></td>
+        </tr>
+        <tr>
+            <td><B>姓名：</B></td>  <td id="name" th:text="${student.name}"></td>
+        </tr>
+        <tr>
+            <td><B>性别：</B></td>  <td id="sex" th:text="${student.sex}"></td>
+        </tr>
+        <tr>
+            <td><B>评价：</B></td>  <td id="remark" th:text="${student.remark}"></td>
+        </tr>
+        <tr>
+            <td><B>语文：</B></td>  <td id="chinese" th:text="${student.chinese}"></td>
+        </tr>
+        <tr>
+            <td><B>数学：</B></td>  <td id="math" th:text="${student.math}"></td>
+        </tr>
+        <tr>
+            <td><B>英语：</B></td>  <td id="english" th:text="${student.english}"></td>
+        </tr>
+        <tr>
+            <td><B>总分：</B></td>  <td id="grade" th:text="${student.grade}"></td>
+        </tr>
+    </table>
+    <a th:href="@{'../del?student_number='+${student.student_number}}">删除</a>
+
+    <form action="../update" onsubmit="return checkAdd()" name="add_student">
+        学号：<input type="number" name="student_number" th:value="${student.student_number}" min="10000" max="99999" readonly="readonly"/><br/>
+        姓名：<input type="text" required="required" th:value="${student.name}" name="name" /><br/>
+
+        性别：男<input type="radio" name="sex" required="required" value="0" />
+        女<input type="radio" name="sex" value="1" /><br/>
+
+        评价：<input type="text" th:value="${student.remark}" name="remark" /><br/>
+        语文：<input type="number" name="chinese" th:value="${student.chinese}" min="0" max="100" /><br/>
+        数学：<input type="number" name="math" th:value="${student.math}" min="0" max="100" /><br/>
+        英语：<input type="number" name="english" th:value="${student.english}" min="0" max="100" /><br/>
+        <input type="submit" value="更新"/> <br/>
+    </form>
+
+</body>
+</html>

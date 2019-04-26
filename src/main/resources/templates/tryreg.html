@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        function checkchinese(){
+            //alert("into ch");
+            //alert(str);
+            var str=document.myform.str.value;
+            debugger;
+            var reg=/^[u4E00-u9FA5]+$/;
+            debugger;
+            if(reg.test(str)) {
+                alert("姓名必须为汉字");
+                return false;
+            }
+            alert("here");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form action="sdf" onsubmit="return checkchinese()" name="myform">
+        <input type="text" name="str" />
+        <input type="submit">
+    </form>
+</body>
+</html>

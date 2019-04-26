@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <title>学生系统</title>
+        <script type="text/javascript" src="/js/index.js"></script>
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    </head>
+    <body>
+    添加学生(学号在10000至99999之间)
+    <form action="/add" onsubmit="return checkAdd()" name="add_student">
+        学号：<input type="number" name="student_number" min="10000" max="99999"/><br/>
+        姓名：<input type="text" required="required" name="name" /><br/>
+
+        性别：男<input type="radio" name="sex" required="required" value="0" />
+        女<input type="radio" name="sex" value="1" /><br/>
+
+        评价：<input type="text" name="remark" /><br/>
+        语文：<input type="number" name="chinese" min="0" max="100" /><br/>
+        数学：<input type="number" name="math" min="0" max="100" /><br/>
+        英语：<input type="number" name="english" min="0" max="100" /><br/>
+        <input type="submit" /> <br/>
+    </form>
+    按学号查找学生<br/>
+    <input type="number" id="student_number" required="required" min="10000" max="99999"/>
+    <button onclick="jump()">查询</button><br/>
+    <!--</form>-->
+    按姓名查找学生<br/>
+    <form action="/show" name="query_byname" onSubmit='return checkQuerybyName()'>
+        <input type="hidden" name="query_type" value="1" />
+        <input type="text" name="student_name" required="required"/>
+        <input type="submit" value="查询" />
+    </form>
+    <br/>
+    按权重生成排序列表<br/>
+    <form action="/show" name="query_list" onsubmit="return checkQueryList()">
+        第一权重<br/>
+        <input type="hidden" name="query_type" value="2" />
+        <input type="radio" name="w1" value="chinese" /> 语文<br/>
+        <input type="radio" name="w1" value="math" />    数学<br/>
+        <input type="radio" name="w1" value="english" /> 英语<br/>
+        <input type="radio" name="w1" value="grade" required="required"/>   总分<br/>
+        <br/><br/>
+        第二权重<br/>
+        <input type="radio" name="w2" value="chinese" required="required" /> 语文<br/>
+        <input type="radio" name="w2" value="math" />    数学<br/>
+        <input type="radio" name="w2" value="english" /> 英语<br/>
+        <input type="radio" name="w2" value="grade" />   总分<br/>
+        <br/><br/>
+        第三权重<br/>
+        <input type="radio" name="w3" value="chinese" /> 语文<br/>
+        <input type="radio" name="w3" value="math" required="required" />    数学<br/>
+        <input type="radio" name="w3" value="english" /> 英语<br/>
+        <input type="radio" name="w3" value="grade" />   总分<br/>
+        <br/><br/>
+
+        <input type="submit" />
+    </form>
+    点击学生姓名可查看详细信息<br />
+    <table>
+        <tr>
+            <th>学号</th>
+            <th>姓名</th>
+        </tr>
+        <tr th:each="ele:${students_list}">
+            <td th:text="${ele.student_number}">
+                1
+            </td>
+
+            <td>
+                <a th:href="@{'info/' + ${ele.student_number}}" th:text="${ele.name}">
+                    李聪
+                </a>
+            </td>
+        </tr>
+    </table>
+    </body>
+</html>
